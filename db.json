@@ -1,0 +1,35 @@
+{
+  "posts": [
+    {
+      "id": 4,
+      "name": "suijt",
+      "email": "sujit@gmail.com",
+      "mobile": "843893483948",
+      "designation": "sales",
+      "gender": "male",
+      "course": [
+        "bca",
+        "bcs"
+      ],
+      "creatdate": "2015-01-08",
+      "imgupload": ""
+    },
+    {
+      "id": 5,
+      "name": "Jon Stewart Doe",
+      "email": "test@example.us",
+      "mobile": "6019521325",
+      "designation": "hr",
+      "gender": "male",
+      "course": [
+        "bca"
+      ],
+      "creatdate": "2222-02-22",
+      "imgupload": ""
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
