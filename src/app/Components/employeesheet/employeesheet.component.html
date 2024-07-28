@@ -1,0 +1,187 @@
+<!-- nav bar start -->
+
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">EmployeeList</span>
+    <div class="d-flex">
+      <button
+        type="button"
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        CreatEmployee
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- nav bar end -->
+
+<!-- Modal and form start -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">CreatEmployee</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myform">
+          <div class="mb-3">
+            <label class="form-label">Name: </label>
+            <input type="text" class="form-control" formControlName="name" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email:</label>
+            <input type="text" class="form-control" formControlName="email" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mobile:</label>
+            <input type="text" class="form-control" formControlName="mobile" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Designation:</label>
+            <select class="form-select" formControlName="designation">
+              <option value="">Select</option>
+              <option value="hr">HR</option>
+              <option value="manager">Manager</option>
+              <option value="sales">Sales</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Gender:</label>
+            <div>
+              <label for="male">Male</label>
+              <input
+                type="radio"
+                id="male"
+                formControlName="gender"
+                value="male"
+              />
+              <label for="female">Female</label>
+              <input
+                type="radio"
+                id="female"
+                formControlName="gender"
+                value="female"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Course:</label>
+            <div formGroupName="course">
+              <div>
+                <input type="checkbox" id="bca" formControlName="bca" />
+                <label for="bca">BCA</label>
+              </div>
+              <div>
+                <input type="checkbox" id="mca" formControlName="mca" />
+                <label for="mca">MCA</label>
+              </div>
+              <div>
+                <input type="checkbox" id="bcs" formControlName="bcs" />
+                <label for="bcs">BCS</label>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="">CreateDate</label>
+            <input
+              type="date"
+              formControlName="creatdate"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Image Upload:</label>
+            <input type="file" (change)="onFileChange($event)" />
+            <img
+              [src]="imgSrc"
+              alt="Image preview"
+              *ngIf="imgSrc"
+              width="40px"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="'cancel'"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="submit" class="btn btn-success" (click)="postdata()">
+          Submit
+        </button>
+        <button type="button" class="btn btn-primary" (click)="updatecall()">
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal and form End -->
+
+<!-- table start  -->
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Designation</th>
+      <th>Gender</th>
+      <th>Course</th>
+      <th>Create Date</th>
+      <th>Imgupload</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- binding all get values with structural directives -->
+    <tr *ngFor="let d of action">
+      <td>{{ d.id }}</td>
+      <td>{{ d.name }}</td>
+      <td>{{ d.email }}</td>
+      <td>{{ d.mobile }}</td>
+      <td>{{ d.designation }}</td>
+      <td>{{ d.gender }}</td>
+      <td>{{ d.course }}</td>
+      <td>{{ d.creatdate }}</td>
+      <td>
+        <img [src]="d.imgupload" alt="Uploaded Image" *ngIf="d.imgupload" />
+      </td>
+
+      <td>
+        <button
+          class="btn btn-info"
+          (click)="onedit(d)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Edit
+        </button>
+        <button class="btn btn-danger" (click)="ondeletedata(d)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- table end  -->
